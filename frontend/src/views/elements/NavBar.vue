@@ -18,19 +18,15 @@
               </a>
               <div class="SiteNav-sectionLeft">
                 <div class="SiteNav-menuList List">
+                  
                   <div class="SiteNav-menuListItem List-item">
                     <a
-                      class="Link Link--block SiteNav-menuListLink"
-                      data-dropdown="SiteNav-dropdown-0"
-                      tabindex="0"
-                      queryselectoralways="36"
+                      class="Link Link--block SiteNav-menuListLink text-upper"
+                      href="/zh-cn/news"
+                      data-analytics="main-nav"
+                      data-analytics-placement="News"
                     >
-                      <div
-                        class="DropdownLink DropdownLink--gold DropdownLink--goldWithHover text-upper"
-                      >
-                        <span class="SiteNav-menuListLinkText" data-text="游戏">游戏</span>
-                        <span class="SiteNav-dropdownIndicator DropdownLink-indicator"></span>
-                      </div>
+                      <span class="SiteNav-menuListLinkText">公会制度</span>
                     </a>
                   </div>
                   <div class="SiteNav-menuListItem List-item">
@@ -40,7 +36,42 @@
                       data-analytics="main-nav"
                       data-analytics-placement="News"
                     >
-                      <span class="SiteNav-menuListLinkText" data-text="新闻">新闻</span>
+                      <span class="SiteNav-menuListLinkText">成员列表</span>
+                    </a>
+                  </div>
+                  <div class="SiteNav-menuListItem List-item">
+                    <a
+                      class="Link Link--block SiteNav-menuListLink text-upper"
+                      href="/zh-cn/news"
+                      data-analytics="main-nav"
+                      data-analytics-placement="News"
+                    >
+                      <span class="SiteNav-menuListLinkText">文章精选</span>
+                    </a>
+                  </div>
+                  <div class="SiteNav-menuListItem List-item">
+                    <a
+                      class="Link Link--block SiteNav-menuListLink text-upper"
+                      href="/zh-cn/news"
+                      data-analytics="main-nav"
+                      data-analytics-placement="News"
+                    >
+                      <span class="SiteNav-menuListLinkText">活动集锦</span>
+                    </a>
+                  </div>
+                  <div class="SiteNav-menuListItem List-item" @click="dropDown=!dropDown">
+                    <a
+                      :class="{Link:true,'Link--block':true,'SiteNav-menuListLink':true,'is-active':dropDown}"
+                      data-dropdown="SiteNav-dropdown-0"
+                      tabindex="0"
+                      queryselectoralways="36"
+                    >
+                      <div
+                        class="DropdownLink DropdownLink--gold DropdownLink--goldWithHover text-upper"
+                      >
+                        <span class="SiteNav-menuListLinkText" data-text="游戏">插件中心</span>
+                        <span class="SiteNav-dropdownIndicator DropdownLink-indicator"></span>
+                      </div>
                     </a>
                   </div>
                   <div class="SiteNav-menuListItem List-item">
@@ -50,7 +81,7 @@
                       data-analytics="main-nav"
                       data-analytics-placement="Forums"
                     >
-                      <span class="SiteNav-menuListLinkText" data-text="论坛">论坛</span>
+                      <span class="SiteNav-menuListLinkText">EPGP</span>
                     </a>
                   </div>
                   <div class="SiteNav-menuListItem List-item">
@@ -60,7 +91,7 @@
                       data-analytics="shop-link"
                       data-analytics-placement="Shop || Nav"
                     >
-                      <span class="SiteNav-menuListLinkText" data-text="商城">商城</span>
+                      <span class="SiteNav-menuListLinkText" data-text="商城">关于我们</span>
                     </a>
                   </div>
                   <div class="SiteNav-menuListItem List-item">
@@ -70,7 +101,7 @@
                       data-analytics="main-nav"
                       data-analytics-placement="WoW Classic"
                     >
-                      <span class="SiteNav-menuListLinkText" data-text="《魔兽世界》经典怀旧服">《魔兽世界》经典怀旧服</span>
+                      <span class="SiteNav-menuListLinkText">加入我们</span>
                     </a>
                   </div>
                 </div>
@@ -119,26 +150,19 @@
                       data-analytics="main-nav"
                       data-analytics-placement="Community - Log In"
                     >
-                      <span class="SiteNav-menuListLinkText" data-text="登录">登录</span>
+                      <span class="SiteNav-menuListLinkText">会员登录</span>
                     </a>
                   </div>
-                  <div class="SiteNav-menuListItem SiteNav-menuListItem--user List-item">
-                    <div class="SiteNav-menuListItemWrap">
-                      <a
-                        class="Link Link--block SiteNav-menuListLink text-upper"
-                        href="https://www.battlenet.com.cn/account/creation/tos.html?theme=wow&amp;style=wow-trial"
-                        data-analytics="account-creation-link"
-                        data-analytics-placement="Nav"
-                      >
-                        <span class="SiteNav-menuListLinkText" data-text="免费体验">免费体验</span>
-                      </a>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
           </div>
-          <div class="Dropdown SiteNav-doormat" name="SiteNav-dropdown-0" queryselectoralways="20">
+          <div
+            :class="{Dropdown:true,'SiteNav-doormat':true,'is-active':dropDown}"
+            name="SiteNav-dropdown-0"
+            queryselectoralways="20"
+          >
             <div class="SiteNav-doormatContent">
               <div class="Grid Grid--gutters">
                 <div class="Grid-1of4">
@@ -550,7 +574,8 @@ export default {
   },
   data() {
     return {
-      sticky: this.alwaysSticky
+      sticky: this.alwaysSticky,
+      dropDown: false
     };
   },
   created() {
@@ -558,9 +583,8 @@ export default {
       window.addEventListener("scroll", () => {
         if (window.pageYOffset > 0) {
           this.sticky = true;
-        }else{
+        } else {
           this.sticky = false;
-
         }
       });
     }
