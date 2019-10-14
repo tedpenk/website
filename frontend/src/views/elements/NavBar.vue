@@ -1,7 +1,7 @@
 <template>
-  <div class="SiteNav" queryselectoralways="49">
-    <div class="Sticky SiteNav-sticky" queryselectoralways="54">
-      <div class="Sticky-content">
+  <div :class="{SiteNav:true,'SiteNav--thinFull':sticky}" queryselectoralways="49">
+    <div :class="{'Sticky':true,'SiteNav-sticky':true,'is-active':sticky}" queryselectoralways="54">
+      <div class="Sticky-content" :style="stickyStyle">
         <div class="SiteNav-area">
           <div class="SiteNav-bar">
             <div class="SiteNav-menu">
@@ -539,7 +539,41 @@
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  props: {
+    alwaysSticky: {
+      type: Boolean,
+      default: function() {
+        return false;
+      }
+    }
+  },
+  data() {
+    return {
+      sticky: this.alwaysSticky
+    };
+  },
+  created() {
+    if (!this.alwaysSticky) {
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 0) {
+          this.sticky = true;
+        }else{
+          this.sticky = false;
+
+        }
+      });
+    }
+  },
+  computed: {
+    stickyStyle() {
+      let style = {};
+      if (this.sticky) {
+        style = { zIndex: 1000, top: "0px", right: "16px" };
+      }
+      return style;
+    }
+  }
 };
 </script>
 
