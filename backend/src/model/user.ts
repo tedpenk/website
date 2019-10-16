@@ -1,4 +1,5 @@
 import { injectable } from 'inversify';
+import { ApiModel } from 'swagger-express-ts';
 
 interface IUser {
   nickname: string;

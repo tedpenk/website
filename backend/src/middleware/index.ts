@@ -12,10 +12,23 @@ export default function initMiddleWare(server: InversifyExpressServer) {
             app.use(webpack());
             app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../../../frontend/src/index.html')));
         }
+        
         swagger(app);
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
-        sessionStore(app, config.dev)
+        sessionStore(app, config.dev);
+        app.get('/', function (req, res, next) {
+            if (req.session.views) {
+                req.session.views++
+                res.setHeader('Content-Type', 'text/html')
+                res.write('<p>views: ' + req.session.views + '</p>')
+                res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
+                res.end()
+            } else {
+                req.session.views = 1
+                res.end('welcome to the session demo. refresh!')
+            }
+        });
     });
 }
 

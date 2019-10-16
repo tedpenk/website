@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import middleware from './middleware';
 import configData from './config';
 import { Container } from "inversify";
@@ -19,6 +19,7 @@ module.exports = function () {
         let logger = makeLoggerMiddleware();
         container.applyMiddleware(logger);
     }
+
     MongoDBConnection.getConnection(db => {
         container.get<Startup>(TYPES.Startup).init();
         const server = new InversifyExpressServer(container);

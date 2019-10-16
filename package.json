@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "./node_modules/typescript/bin/tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "DEBUG=express:* node -r ts-node/register backend/src/app.ts --dev",
+    "dev": "node -r ts-node/register backend/src/app.ts --dev",
     "backend": "node -r ts-node/register backend/src/app.ts --backend",
     "prod": "node -r ts-node/register backend/src/app.ts",
     "build": "rm -rf dist && ./node_modules/typescript/bin/tsc",
@@ -22,6 +22,7 @@
   "dependencies": {
     "commander": "^3.0.2",
     "connect-mongo": "^3.0.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "inversify": "^5.0.1",
