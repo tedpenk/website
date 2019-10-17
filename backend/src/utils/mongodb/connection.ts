@@ -1,7 +1,7 @@
 import { Db, MongoClient } from 'mongodb';
 
 export const connStr = 'mongodb://localhost:27017';
-const dbName = "helloworld";
+export const dbName = "helloworld";
 
 export class MongoDBConnection {
   private static isConnected: boolean = false;
@@ -18,7 +18,7 @@ export class MongoDBConnection {
   }
 
   private static connect(result: (error: Error, db: Db) => void) {
-    MongoClient.connect(connStr, (err, client) => {
+    MongoClient.connect(connStr, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
       if (err) {
         console.error(err);
       }

@@ -38,4 +38,21 @@ export class AuthController implements interfaces.Controller {
         res.json(user);
     }
 
+
+    @ApiOperationPost({
+        path: "/logout",
+        description: "退出登录",
+        consumes: ["application/x-www-form-urlencoded"],
+        parameters: {},
+        responses: {
+            200: { description: "成功登出" },
+            500: { description: "登出失败" }
+        }
+    })
+    @httpPost("/logout")
+    public async logout(req: express.Request, res: express.Response) {
+        delete req.session.userId;
+        res.status(200).end('ok');
+    }
+
 }

@@ -4,6 +4,7 @@ import { ApiModel, ApiModelProperty, ApiPath, ApiOperationGet, ApiOperationPost,
 import { inject } from "inversify";
 import TYPES from "../constant/types";
 import { UserService } from "../service/user";
+import auth from "../middleware/auth";
 @ApiPath({
     path: "/user",
     name: "user"
@@ -19,7 +20,7 @@ export class UserController implements interfaces.Controller {
             401: { description: "用户没有登录" }
         }
     })
-    @httpGet("/me")
+    @httpGet("/me", auth('user'))
     public async  me(req: express.Request, res: express.Response) {
         const user = await this.userService.getUserByID(req.session.userId);
         res.json(user);
