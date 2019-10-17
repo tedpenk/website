@@ -7,6 +7,7 @@ interface IUser {
   password: string;
   _id?: string;
   createAt: Date;
+  phone?: string;
   role: 'user' | 'admin';
 }
 
@@ -17,6 +18,7 @@ export class User implements IUser {
     public email: string,
     public password: string,
     public role: 'user' | 'admin' = 'user',
+    public phone?: string,
     public _id?: string,
     public createAt: Date = new Date(),
   ) { }

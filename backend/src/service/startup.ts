@@ -18,7 +18,7 @@ export class Startup {
         }
         task.then(() => {
             [
-                new User('Typescript', 'chuanqigd02@163.com', md5('typescript'), 'admin')
+                new User('Typescript', 'chuanqigd02@163.com', md5('typescript'), 'admin', '18500238470')
             ].forEach(user => {
                 this.userService.getUserByEmail(user.email).then(res => {
                     if (!res) {

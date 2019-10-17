@@ -1,7 +1,7 @@
-import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import { Application } from 'express';
-import { MongoDBConnection, connStr, dbName } from '../utils/mongodb/connection';
+import session from 'express-session';
+import { connStr, dbName } from '../utils/mongodb/connection';
 
 export default function sessionStore(app: Application, dev: Boolean) {
     const MongoStore = connectMongo(session);

@@ -1,15 +1,11 @@
-import * as express from 'express';
-import middleware from './middleware';
+import { InversifyExpressServer } from "inversify-express-utils";
 import configData from './config';
-
-import { makeLoggerMiddleware } from 'inversify-logger-middleware';
-import { interfaces, InversifyExpressServer, TYPE } from "inversify-express-utils";
-import { UserService } from './service/user';
 import TYPES from './constant/types';
-import { Startup } from './service/startup';
-import { MongoDBClient } from './utils/mongodb/client';
-import { MongoDBConnection } from './utils/mongodb/connection';
 import { container } from './container';
+import middleware from './middleware';
+import { Startup } from './service/startup';
+import { MongoDBConnection } from './utils/mongodb/connection';
+
 
 module.exports = function () {
 

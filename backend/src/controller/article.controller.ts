@@ -1,7 +1,7 @@
 import * as express from "express";
-import { interfaces, controller, httpGet, httpPost, httpDelete, request, queryParam, response, requestParam } from "inversify-express-utils";
-import { ApiModel, ApiModelProperty, ApiPath, ApiOperationGet, ApiOperationPost, SwaggerDefinitionConstant } from "swagger-express-ts";
+import { controller, httpPost, interfaces } from "inversify-express-utils";
 import multer from 'multer';
+import { ApiOperationPost, ApiPath } from "swagger-express-ts";
 const uploadTmp = multer({ dest: 'uploads/.tmp' })
 @ApiPath({
     path: "/article",
@@ -29,5 +29,4 @@ export class ArticleController implements interfaces.Controller {
 
         response.end(req.file.filename);
     }
-
 }
