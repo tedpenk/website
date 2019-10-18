@@ -11,8 +11,3 @@ new Vue({
     extends: App,
     router
 }).$mount('#app');
-
-
-export function pushPage(ws) {
-    router.push({path: '/page?ws=' + escape(ws)});
-}

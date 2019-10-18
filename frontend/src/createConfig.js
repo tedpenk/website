@@ -1,27 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const {VueLoaderPlugin} = require('vue-loader');
+const { VueLoaderPlugin } = require('vue-loader');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-module.exports = (config, target = {chrome: 52, firefox: 48}) => {
-    const bubleOptions = {
-        target,
-        objectAssign: 'Object.assign',
-        transforms: {
-            forOf: false,
-            modules: false
-        }
-    }
+module.exports = (config, dev) => {
 
     const baseConfig = {
-        mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-        resolve: {
-            alias: {
-                src: path.resolve(__dirname, '../src')
-            }
-        },
+        mode: dev ? 'development' : 'production',
         module: {
             rules: [
                 {
@@ -30,8 +17,7 @@ module.exports = (config, target = {chrome: 52, firefox: 48}) => {
                     options: {
                         compilerOptions: {
                             preserveWhitespace: false
-                        },
-                        transpileOptions: bubleOptions
+                        }
                     }
                 },
                 {
@@ -41,7 +27,7 @@ module.exports = (config, target = {chrome: 52, firefox: 48}) => {
                         use: [
                             {
                                 loader: 'css-loader',
-                                options: {sourceMap: true}
+                                options: { sourceMap: true }
                             },
                             'postcss-loader'
                         ]
@@ -65,10 +51,6 @@ module.exports = (config, target = {chrome: 52, firefox: 48}) => {
                             }
                         ]
                     })
-                },
-                {
-                    test: /\.(png|woff2)$/,
-                    loader: 'url-loader?limit=0'
                 }
             ]
         },
